@@ -18,8 +18,11 @@ class PostRepository
 		$post->titre = $inputs['titre'];
 		$post->contenu = $inputs['contenu'];	
 		$post->user_id = $inputs['user_id'];
+		$post->date_end = $inputs['date_end'];
+		$post->etat = isset($inputs['etat']);
 
 		$post->save();
+	//	dd($inputs['titre']);
 	}
 
 

@@ -1,89 +1,78 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Gestionnaire de tache</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
+@section('content')
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Accueil</a>
-                    @else
-                        <a href="{{ url('/login') }}">Connexion</a>
-                        <a href="{{ url('/register') }}">Inscription</a>
-                    @endif
-                </div>
-            @endif
 
             <div class="container">
                 <header class="jumbotron">
                     <div class="container">
-                        <h1 class="page-header">Vous ete sur l'application de gestionnaire des taches !</h1>
+                        <p class="page-header">Vous ete sur l'application de gestionnaire des taches !
+                        Dans cette application il est question d'ajouter de modifier et de visualisser des taches que vous ou un autre menbre 
+                        a ajouté. Ces taches sont ajoutés selon une logique.
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <ul>
+                                        <li>Une tache a un :
+                                            <ul>
+                                                <li>Id</li>
+                                                <li>Titre</li>
+                                                <li>User_ID</li>
+                                                <li>Contenu</li>
+                                                <li>date de début</li>
+                                                <li>date de fin</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <ul>
+                                        <li>Une tache a deux status :
+                                            <ul>
+                                                <li>Tache faite</li>
+                                                <li>Tache pas encore faite</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-6">
+                                <em>En fonction du status et de la date de fin une </em>
+                                    <ul>
+                                        <li>Si une tache est faite avant sa date de fin
+                                            <ul>
+                                                <li>Elle est bien validée</li>
+                                            </ul>
+                                        </li>
+                                        <li>Si une tache est faite et que le délais est dépassé
+                                            <ul>
+                                                <li>Elle est terminer</li>
+                                            </ul>
+                                        </li>
+                                        <li>Si une tache est n'est pas encore faite et qu'on est dans les délais
+                                            <ul>
+                                                <li>Elle est a faire</li>
+                                            </ul>
+                                        </li>
+                                        <li>Si une tache est n'est pas encore faite et qu'on a dépassé les délais
+                                            <ul>
+                                                <li>Elle est pas validée</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </p>
+
+                        @if (Route::has('login'))
+                            @if (Auth::check())
+                                <a href="{{ url('/home') }}">Accueil</a>
+                            @else
+                                <a href="{{ url('/login') }}">Connexion</a>
+                                <a href="{{ url('/register') }}">Inscription</a>
+                            @endif
+                        @endif
                     </div>
                 </header>
             </div>
-        </div>
-    </body>
-</html>
+@endsection

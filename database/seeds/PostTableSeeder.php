@@ -26,7 +26,9 @@ class PostTableSeeder extends Seeder {
 				non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                 'user_id' => rand(1, 10),
                 'created_at' => $date,
-                'updated_at' => $date 
+                'updated_at' => $date,
+                'date_end' => $date,
+                'etat' => rand(0, 1)
             ]);
         }
     }

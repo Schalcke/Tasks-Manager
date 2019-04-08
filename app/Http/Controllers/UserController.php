@@ -35,7 +35,7 @@ class UserController extends Controller
 		return view('create');
 	}
 
-	public function store(Request $request)
+	public function store(UserCreateRequest $request)
 	{
 		$user = $this->userRepository->store($request->all());
 

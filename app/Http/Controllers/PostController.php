@@ -5,13 +5,12 @@ use App\Repositories\PostRepository;
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class PostController extends Controller 
 {
-
     protected $postRepository;
 
-    protected $nbrPerPage = 5;
-
+	protected $nbrPerPage = 6;
+	
     public function __construct(PostRepository $postRepository)
 	{
 		$this->postRepository = $postRepository;
@@ -20,7 +19,7 @@ class PostController extends Controller
 	public function index()
 	{
 		$posts = $this->postRepository->getPaginate($this->nbrPerPage);
-        $links = $posts->render();
+		$links = $posts->render();
         
     //    return 'Hello';
 
@@ -37,7 +36,7 @@ class PostController extends Controller
 		$inputs = array_merge($request->all(), ['user_id' => $request->user()->id]);
 		$user_id = $request->user()->id;
 	//	dd($user_id = $request->user()->id);
-    //    $this->postRepository->store($inputs);
+    //  $this->postRepository->store($inputs);
 		$post = $this->postRepository->store($inputs);
 
 		return redirect('post')->withOk("La tache " . $post->titre . " a été créé.");
@@ -46,6 +45,8 @@ class PostController extends Controller
     public function show($id)
 	{
 		$post = $this->postRepository->getById($id);
+		
+		//dd($post);
 		
 		return view('listeShow',  compact('post'));
 	} 

@@ -19,6 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('titre');
             $table->text('contenu');
             $table->integer('user_id')->unsigned();
+            $table->boolean('etat')->default(false);
+            $table->dateTime('date_end');
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')

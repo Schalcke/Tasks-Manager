@@ -1,33 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-md-offset-3 col-md-6">
-       <br>
-        <div class="panel panel-primary">   
-            <div class="panel-heading">Ajout d'une nouvelle tache </div>
-            <div class="panel-body"> 
-                    <div class="col-sm-12">
-                        {!! Form::open(['route' => 'post.store', 'class' => 'form-horizontal panel']) !!}
-                            <div class="form-group {!! $errors->has('titre') ? 'has-error' : '' !!}">
-                                {!! Form::text('titre', null, ['class' => 'form-control', 'placeholder' => 'Titre']) !!}
-                                {!! $errors->first('titre', '<small class="help-block">:message</small>') !!}
-                            </div>
-                            <div class="form-group {!! $errors->has('contenu') ? 'has-error' : '' !!}">
-                                {!! Form::textarea ('contenu', null, ['class' => 'form-control', 'placeholder' => 'Contenu']) !!}
-                                {!! $errors->first('contenu', '<small class="help-block">:message</small>') !!}
-                            </div>
-                            <div class="form-group {!! $errors->has('user_id') ? 'has-error' : '' !!}">
-                                {!! Form::number ('user_id', Auth::user()->id, ['class' => 'form-control', 'placeholder' => 'User_id']) !!}
-                                {!! $errors->first('user_id', '<small class="help-block">:message</small>') !!}
-                            </div>
-                            {!! Form::submit('Envoyer !', ['class' => 'btn btn-default pull-right']) !!}
-                        {!! Form::close() !!}
-			        </div>
-            </div>
-        </div>
+<div class="container">
+        <h1>Ajouter une nouvelle tache</h1>
+        <a href="javascript:history.back()"> < Retour à la liste des taches </a>
 
-        <a href="javascript:history.back()" class="btn btn-primary">
-            <span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
-        </a>
+            <div class="row">
+                {!! Form::open(['route' => 'post.store', 'class' => '']) !!}
+                    <div class="form-group col-md-6 {!! $errors->has('titre') ? 'has-error' : '' !!}">
+                        <label>Titre :</label>
+                        {!! Form::text('titre', null, ['class' => 'form-control', 'placeholder' => 'Titre']) !!}
+                        {!! $errors->first('titre', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    <div class="form-group col-md-6 {!! $errors->has('date_end') ? 'has-error' : '' !!}">
+                        <label>Expire le :</label>
+                        {!! Form::date ('date_end', null, ['class' => 'form-control', 'placeholder' => 'Date de fin']) !!}
+                        {!! $errors->first('date_end', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    <div class="form-group col-md-12 {!! $errors->has('contenu') ? 'has-error' : '' !!}">
+                        <label>Contenu :</label>
+                        {!! Form::textarea ('contenu', null, ['class' => 'form-control', 'placeholder' => 'Contenu']) !!}
+                        {!! $errors->first('contenu', '<small class="help-block">:message</small>') !!}
+                    </div>
+                    {!! Form::submit('Ajouter', ['class' => 'btn btn-primary pull-right']) !!}
+                {!! Form::close() !!}
+
     </div>
 @endsection
